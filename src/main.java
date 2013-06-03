@@ -1,11 +1,10 @@
-import java.util.Scanner;
-
 // Project 4: Strongly Connected Components - Due Wed June 5
 //
 // Develop a program to compute the strongly connected components of a directed graph.
 // Use the various graph classes provided and the algorithm described in class. The steps are described below.
 // 
 // 1. Write a main program that reads an input graph file, constructs a graph and prints out the adjacency lists.
+//	Done.
 //
 // 2. Use the DfsGraph class provided and depth-first search to implement the strongly connected components algorithm 
 //  described by pseudocode on the course site and run it on the initial test graphs.
@@ -19,23 +18,32 @@ import java.util.Scanner;
 
 public class main {
 	public static void main(String[] args) {
-		Scanner s = new Scanner(System.in);
-		int order = s.nextInt(), size = s.nextInt();
-		boolean directed = false, weighted = true;
+		// Scanner s = new Scanner(System.in);
+		// int order = s.nextInt(), size = s.nextInt();
+		// boolean directed = false, weighted = true;
+		//
+		// if (s.next().equalsIgnoreCase("directed")) {
+		// directed = true;
+		// weighted = false;
+		// }
+		// DfsGraph g = new DfsGraph("Graph", order, size, directed, weighted);
+		//
+		// while (s.hasNext()) {
+		// if (weighted)
+		// g.addEdge(s.nextInt(), s.nextInt(), s.nextDouble());
+		// else
+		// g.addEdge(s.nextInt(), s.nextInt());
+		// }
+		//
 		
-		if (s.next().equalsIgnoreCase("directed")) {
-			directed = true;
-			weighted = false;
+		DfsGraph g = null;
+		try {
+			g = new DfsGraph(args[0]);
+		} catch (Exception e) {
+			System.out.println("Wrong arguments. Expected: filename");
+			System.exit(1);
 		}
-		Graph g = new Graph("Graph", order, size, directed, weighted);
-		
-		while (s.hasNext()) {
-			if (weighted)
-				g.addEdge(s.nextInt(), s.nextInt(), s.nextDouble());
-			else
-				g.addEdge(s.nextInt(), s.nextInt());
-		}
-		
 		System.out.println(g.toString());
+		g.dfs(0);
 	}
 }
