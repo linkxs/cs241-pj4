@@ -21,12 +21,21 @@ public class main {
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 		int order = s.nextInt(), size = s.nextInt();
-		boolean directed = false, weighted = false;
-
-		if (s.next().equalsIgnoreCase("directed"))
+		boolean directed = false, weighted = true;
+		
+		if (s.next().equalsIgnoreCase("directed")) {
 			directed = true;
-		if (s.next().equalsIgnoreCase("weighted"))
-			weighted = true;
-		else 
+			weighted = false;
+		}
+		Graph g = new Graph("Graph", order, size, directed, weighted);
+		
+		while (s.hasNext()) {
+			if (weighted)
+				g.addEdge(s.nextInt(), s.nextInt(), s.nextDouble());
+			else
+				g.addEdge(s.nextInt(), s.nextInt());
+		}
+		
+		System.out.println(g.toString());
 	}
 }
